@@ -2,7 +2,8 @@ require("dotenv").config();
 
 var keys = require("./keys.js");
 var moment = require("moment");
-var spotify = new Spotify(keys.spotify);
+var spotifi = require("node-spotify-api");
+var fs = require("fs");
 var axios = require("axios");
 
 
@@ -13,11 +14,11 @@ var userSearch = process.argv.slice(3).join(" ");
 
 function run(appCommand, userSearch){
     switch(appCommand){
-        case "spotifi this song":
+        case "spotifi-this-song":
             getSpotifi(userSearch);
             break;
 
-        case "cosert this":
+        case "consert-this":
             getConsert(userSearch)
             break;
 
@@ -25,11 +26,23 @@ function run(appCommand, userSearch){
             getMovie(userSearch)
             break;
 
-                
+        case "do-what-it-sais":
+            getdoThis(userSearch)
+            break;
+        default:
+            console.log("please enter one of the following commands: consort-this", "spotifi-this-song", "movie-this", "do-what-it-sais");
 
     }
 }
 
+function getSpotifi(songName){
+    var spotify = new Spotify(keys.spotify);
+
+    if(!songName) {
+        songName = "the Sign";
+    };
+
+    
 
 var queryUrl = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
 
