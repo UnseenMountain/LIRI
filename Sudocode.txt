@@ -1,0 +1,3 @@
+Sudo code
+
+I want to log Spotifi bands and music to the console
